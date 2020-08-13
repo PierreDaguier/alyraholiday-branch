@@ -18,3 +18,21 @@ const defaultList = [
     category: "inspiration",
   }
 ]
+
+function allCategories(list) {
+  /*retourne la list des tags uniques*/
+  let listTotal = []
+  for (let el of list) {
+    if ('category' in el) {
+      listTotal = listTotal.concat(el.category)
+    }
+  }
+  const listCategoryUnique = []
+  listTotal.forEach((el) => {
+    if (!listCategoryUnique.includes(el)) {
+      listCategoryUnique.push(el)
+    }
+  })
+  return listCategoryUnique
+}
+const uniqueCategory = allCategories(defaultList)

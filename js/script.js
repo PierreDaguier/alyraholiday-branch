@@ -1,4 +1,5 @@
 "use strict"
+let filterEntries = "toutes les veilles"
 const container = document.getElementById("container")
 const form = document.getElementById("form")
 
@@ -22,3 +23,28 @@ form.addEventListener("submit", (event) => {
   // la ligne ci-dessous fait un reset du formulaire (les champs redeviennent vides)
   form.reset()
 })
+
+// affichage par catégorie
+
+
+function activateFilterByCategory() {
+  const selectCa = document.getElementById("filterCategory")
+
+  uniqueCategory.sort()
+  //console.log(uniqueCategory)
+  //renvoie les 17 différentes catégories
+
+
+  for (let category of uniqueCategory) {
+      const option = document.createElement("option")
+      option.textContent = category
+      option.value = category
+      selectCa.append(option)
+  }
+  selectCa.addEventListener("change", () => {
+      filterEntries = selectCa.value
+      console.log("filterCa", filterCa)
+  })
+}
+
+activateFilterByCategory()
