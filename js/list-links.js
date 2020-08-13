@@ -11,24 +11,28 @@ class ListLinks {
   pushEl(el) {
     /* @todo : remplacer array vide [] dans const urls = [], par l'array qui contient tous les urls
     trouvés dans this.list */
-    const urls = []
-
+    console.log(this.list)
+    const urls = this.list.map((el) => el.url)
+    console.log(urls)
     if (!urls.includes(el.url)) {
       // si el.url n'est pas dans la liste des urls
       // je l'ajoute
       this.list.push(el)
       // et j'appelle la méthode refresh
       this.refresh()
+    } else {
+      alert("Ce lien est déjà inclu")
     }
   }
   remove(el) {
     const i = this.list.findIndex((item) => item === el) // <- ce code trouve index de l'élément récherché
-    this.list.splice(index, 1) // <- ce code enleve l'élément avec index i de list
-    // @todo : appeller la méthode refresh
+    this.list.splice(i, 1) // <- ce code enleve l'élément avec index i de this.list
+    console.log(this.list)
+    this.refresh()
   }
   refresh() {
-    // @todo: appele la méthode addToLocalStorage
-    // @todo: appele la méthode render
+    this.render()
+    this.addToLocalStorage()
   }
   addToLocalStorage() {
     /*
@@ -40,48 +44,90 @@ class ListLinks {
   render() {
     const ulEl = this.addUl()
     this.container.innerHTML = ""
-    // @todo : attache ulEl à la fin de container
+    this.container.append(ulEl)
   }
 
   addUl() {
-    const ulEl = document.createElement("ul")
-    // @todo : ajouter des classes row list-unstyled mt-4
+    const ulEl = this.createUlElement()
+    console.log(this.list)
     for (let el of this.list) {
       const li = this.addLi(el)
-      // @todo : append chaque li à élément ulEl
+      ulEl.append(li)
     }
-    // @todo : retourner ulEl
+    return ulEl
   }
 
   addLi(el) {
+    const liEl = this.createLiElement()
+    liEl.append(this.addTitle(el))
+    liEl.append(this.addDescription(el))
+    liEl.append(this.addLink(el))
+    liEl.append(this.addButton(el))
+    return liEl
+  }
+
+  createUlElement() {
+    const ulEl = document.createElement("ul")
+    ulEl.classList.add("row", "list-unstyled", "mt-4")
+    return ulEl
+  }
+
+  createLiElement() {
     const liEl = document.createElement("li")
-    // @todo : ajouter des classes à liEl border shadow-sm mb-3 p-2
-    liEl.innerHTML = this.addTitle(el)
-    // @todo : mettre en place le reste de son contentu en utilisant les méthodes
-    //  addDescription(el)
-    //  addLink(el)
-    //  addButton(el)
-    //  retourner liEl
+    liEl.classList.add("border", "shadow-sm", "mb-3", "p-2")
+    return liEl
+  }
+
+  createTitleElement() {
+    const el = document.createElement("h3")
+    el.classList.add("h6", "mb-0")
+    return el
+  }
+
+  createDescriptionElement() {
+    const el = document.createElement("p")
+    return el
+  }
+
+  createLinkElement() {
+    const el = document.createElement("a")
+    el.classList.add("btn", "btn-sm", "btn-outline-warning", "mr-2")
+    return el
+  }
+
+  createButtonElement() {
+    // <button type="button" class="btn btn-warning btn-sm"></button>
+    const el = document.createElement("button")
+    el.type = "button"
+    el.classList.add("btn", "btn-warning", "btn-sm")
+    return el
   }
 
   addTitle(el) {
-    // @todo : retourner le markup pour le titre (h3.h6.mb-0), <h3 class="h6 mb-0">Le titre</h3>
+    const title = this.createTitleElement()
+    title.textContent = el.title
+    return title
   }
 
   addDescription(el) {
-    // @todo : retourner le markup pour la description, <p>Voici la description</p>
+    const description = this.createDescriptionElement()
+    description.textContent = el.description
+    return description
   }
 
   addLink(el) {
-    /* @todo : retourner le markup pour le lien vers le ressource a.btn.btn-sm.btn-ouline-warning.mr-2 
-    avec le texte visitez le lien */
+    const a = this.createLinkElement()
+    a.textContent = "visiter le lien"
+    a.href = el.url
+    return a
   }
 
   addButton(el) {
-    const buttonEl = document.createElement(button)
-    // @todo : ajouter des classes btn btn-warning btn-sm
-    // @todo : mettre le texte "Supprimer le lien"
-    // @todo : ajouter un eventListener qui écoute pour 'click' qui déclanchera la méthode remove
-    // @todo : retourner buttonEl
+    const buttonEl = this.createButtonElement()
+    buttonEl.textContent = "Supprimer le lien"
+    buttonEl.addEventListener("click", () => {
+      this.remove(el)
+    })
+    return buttonEl
   }
 }

@@ -16,5 +16,5 @@ const defaultList = [
     description: `Un porfolio créatif d'une front-end dev`,
     url: `https://cassie.codes/`,
     category: "inspiration",
-  },
+  }
 ]
