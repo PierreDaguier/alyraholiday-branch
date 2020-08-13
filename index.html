@@ -20,6 +20,38 @@
     </div>
   </header>
   <section>
+
+    <!-- #################################### BOUTON DROPDOWN // BOOTSTRAP ################################################## -->
+
+    <div class="d-flex justify-content-end">
+    <div class='dropdown'>
+      <script src="js/list-links.js"></script>
+      <script src="js/default-list.js"></script>
+      
+      <button class="btn btn-primary btn-sm mr-3" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Trier par :
+      </button>
+      <div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
+ 
+        
+        <a class='dropdown-item'  href='javascript:
+        
+        listLinks.init(defaultList.sort((a, b) => (a.title > b.title ? 1 : -1)))
+        
+        '>de A à Z</a>
+          
+        <a class='dropdown-item' href='javascript:
+        
+        listLinks.init(defaultList.sort((a, b) => (a.title > b.title ? -1 : 1)))
+        
+        '>de Z à A</a>
+      </div>
+    </div>
+    </div>
+
+
+  <!-- ###################################################################################################################################################-->
+    
     <div class="container">
       <h2>Liste des liens 🏖 :</h2>
       <div id="container" class="mb-3"></div>
@@ -54,9 +86,16 @@
       </form>
     </div>
   </section>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+        crossorigin="anonymous"></script>
   <script src="js/default-list.js"></script>
   <script src="js/list-links.js"></script>
   <script src="js/script.js"></script>
 </body>
 
 </html>
+
