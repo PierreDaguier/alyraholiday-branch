@@ -6,6 +6,7 @@ const form = document.getElementById("form")
 const listLinks = new ListLinks(container, defaultList)
 listLinks.init()
 
+
 console.log(listLinks)
 
 // quand l'événement "submit" pour le formulaire est déclanché
