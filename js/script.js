@@ -5,23 +5,7 @@ const form = document.getElementById("form")
 const listLinks = new ListLinks(container, defaultList)
 listLinks.init()
 
-/*
-function boutondropdown() {
-const tri = document.getElementById("tri")
-tri.innerHTML = 
-`<div class="d-flex justify-content-end">
-<div class="dropdown">
-<button class="btn btn-primary btn-sm></button type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-Trier par</button>
-<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-<a class="dropdown-item" href="#">de A à Z</a>
-<a class="dropdown-item" href="#">de Z à A</a>
 
-</div>
-
-</div></div>`}
-
-boutondropdown() */
 console.log(listLinks)
 
 // quand l'événement "submit" pour le formulaire est déclanché
