@@ -35,7 +35,7 @@ function createMyTitleElement(title){
   return titleEl;
 }
 
-//Creation de la fontion filtre par categorie
+//Creation de la fonction filtre par categorie
 function activateFilterByCategory() {
 
   //On recupère dans l'HTML les id necessaires pour filtrer et afficher
@@ -58,13 +58,18 @@ function activateFilterByCategory() {
   
   selectCa.addEventListener("change", () => {
       filteredEntry = selectCa.value;
-      console.log(filteredEntry)
-      ulElements.innerHTML = '';
+      listLinks.init(filteredEntry)
+      console.log(uniqueCategory)
+      // const results = defaultList.filter(el => el.category === category)
+      // console.log(selectCa.value)
+      
+      // listLinks.init(defaultList.filter(el => el.category === filteredEntry))
+      /*ulElements.innerHTML = '';
       const results = defaultList.filter(el => el.category === filteredEntry)
      
-        listLinks.init(results)
+      listLinks.init(filteredEntry)
       
-    
+    */
     })
   
 }
