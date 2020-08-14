@@ -59,6 +59,7 @@ class ListLinks {
 
   addLi(el) {
     const liEl = this.createLiElement()
+    liEl.setAttribute("id", "addLi")
     liEl.append(this.addTitle(el))
     liEl.append(this.addDescription(el))
     liEl.append(this.addLink(el))
@@ -68,6 +69,7 @@ class ListLinks {
 
   createUlElement() {
     const ulEl = document.createElement("ul")
+    ulEl.setAttribute("id", "ulElements");
     ulEl.classList.add("row", "list-unstyled", "mt-4")
     return ulEl
   }

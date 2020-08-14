@@ -1,5 +1,5 @@
 "use strict"
-let filterEntries = "toutes les veilles"
+let filteredEntry = "toutes les veilles"
 const container = document.getElementById("container")
 const form = document.getElementById("form")
 
@@ -27,12 +27,25 @@ form.addEventListener("submit", (event) => {
 // affichage par catégorie
 
 
-function activateFilterByCategory() {
-  const selectCa = document.getElementById("filterCategory")
+function createMyTitleElement(title){
+  const titleEl = document.createElement("h3")
+  titleEl.textContent = item.title;
+  titleEl.classList.add("h6", "mb-0");
+  return titleEl;
+}
 
+//Creation de la fontion filtre par categorie
+function activateFilterByCategory() {
+
+  //On recupère dans l'HTML les id necessaires pour filtrer et afficher
+  const selectCa = document.getElementById("filterCategory")
+  const ulElements = document.getElementById("ulElements")
+  
+  
+//On trie tous les elements
   uniqueCategory.sort()
   //console.log(uniqueCategory)
-  //renvoie les 17 différentes catégories
+ 
 
 
   for (let category of uniqueCategory) {
@@ -41,10 +54,18 @@ function activateFilterByCategory() {
       option.value = category
       selectCa.append(option)
   }
+  
   selectCa.addEventListener("change", () => {
-      filterEntries = selectCa.value
-      console.log("filterCa", filterCa)
-  })
+      filteredEntry = selectCa.value;
+      console.log(filteredEntry)
+      ulElements.innerHTML = '';
+      const results = defaultList.filter(el => el.category === filteredEntry)
+     
+        listLinks.init(results)
+      
+    
+    })
+  
 }
 
 activateFilterByCategory()
